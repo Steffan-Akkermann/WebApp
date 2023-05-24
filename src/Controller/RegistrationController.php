@@ -30,8 +30,6 @@ class RegistrationController
         $password = $data['password'];
         $email = $data['email'];
 
-        var_dump($data);
-
         // Проверка на валидность логина, пароля и email
         if (strlen($username) < 2 || strlen($username) > 20) {
             $response->getBody()->write(json_encode(['success' => false, 'message' => 'Invalid username length']));

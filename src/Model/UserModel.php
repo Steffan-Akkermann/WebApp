@@ -13,7 +13,6 @@ class UserModel
 
     public function registerUser($username, $password, $email)
     {
-        var_dump($username);
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         $query = "INSERT INTO users (user_login, user_password, user_email) VALUES (:username, :password, :email)";

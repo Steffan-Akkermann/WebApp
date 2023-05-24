@@ -25,7 +25,7 @@ return function (ContainerBuilder $containerBuilder) {
                     'host' => '127.0.0.1:3306',
                     'dbname' => 'webapp',
                     'user' => 'root',
-                    'pass' => '',
+                    'pass' => 'root',
                 ],
             ]);
         }

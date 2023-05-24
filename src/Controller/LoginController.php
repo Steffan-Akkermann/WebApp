@@ -16,7 +16,13 @@ class LoginController
 
     public function showLoginForm(Request $request, Response $response, $args)
     {
-        // Отображение формы авторизации
+
+        $cookies = $request->getCookieParams();
+
+        if (isset($cookies['user'])) {
+            return $response->withHeader('Location', '/profile')->withStatus(302);
+        }
+        
         $view = file_get_contents(__DIR__ . '/../View/login.html');
         $response->getBody()->write($view);
         return $response;

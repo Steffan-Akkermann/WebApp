@@ -15,6 +15,7 @@ use App\Model\UserModel;
 
 
 return function (App $app) {
+
     $app->options('/{routes:.*}', function (Request $request, Response $response) {
         // CORS Pre-Flight OPTIONS Request Handler
         return $response;
