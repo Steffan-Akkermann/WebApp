@@ -20,7 +20,7 @@ class UserModel
         $statement->bindParam(':username', $username);
         $statement->bindParam(':password', $hashedPassword);
         $statement->bindParam(':email', $email);
-        
+
         return $statement->execute();
     }
 
@@ -35,5 +35,18 @@ class UserModel
         $hashedPassword = $result['user_password'];
 
         return password_verify($password, $hashedPassword);
+    }
+
+    public function checkUsernameExists($username)
+    {
+        $query = "SELECT COUNT(*) as count FROM users WHERE user_login = :username";
+        $statement = $this->db->prepare($query);
+        $statement->bindParam(':username', $username);
+        $statement->execute();
+
+        $result = $statement->fetch();
+        $count = $result['count'];
+
+        return $count > 0;
     }
 }

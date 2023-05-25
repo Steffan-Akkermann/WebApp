@@ -30,6 +30,11 @@ class RegistrationController
         $password = $data['password'];
         $email = $data['email'];
 
+        if ($this->userModel->checkUsernameExists($username)) {
+            $response->getBody()->write(json_encode(['success' => false, 'message' => 'Username already exists']));
+            return $response->withHeader('Content-Type', 'application/json');
+        }
+
         // Проверка на валидность логина, пароля и email
         if (strlen($username) < 2 || strlen($username) > 20) {
             $response->getBody()->write(json_encode(['success' => false, 'message' => 'Invalid username length']));
